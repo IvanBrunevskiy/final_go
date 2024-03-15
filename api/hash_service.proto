@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+package hasher;
+
+option go_package = "./pkg/hasher";
+
+// HashingService определяет сервис для работы с хешами.
+service HashingService {
+  rpc CheckHash (HashRequest) returns (HashResponse);
+  rpc GetHash (HashRequest) returns (HashResponse);
+  rpc CreateHash (HashRequest) returns (HashResponse);
+}
+
+// HashRequest описывает запрос для сервиса.
+message HashRequest {
+  string payload = 1;
+}
+
+// HashResponse описывает ответ сервиса.
+message HashResponse {
+  bool exists = 1;
+  string hash = 2;
+  string error = 3;
+}
